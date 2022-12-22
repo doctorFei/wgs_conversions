@@ -6,8 +6,7 @@
   "module": "lib/bundle.esm.js",
   "scripts": {
     "build": "rollup -c",
-    "build:type": "tsc -p ./tsconfig.type.json",
-    "test": "jest --no-cache"
+    "build:type": "tsc -p ./tsconfig.type.json"
   },
   "author": "zenoslin",
   "license": "ISC",
@@ -25,5 +24,7 @@
     "lib": "lib",
     "test": "test"
   },
-  "dependencies": {}
+  "dependencies": {
+    "three": "^0.147.0"
+  }
 }

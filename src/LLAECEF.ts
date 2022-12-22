@@ -1,4 +1,4 @@
-const pi = Math.PI;
+const pi = 3.141592653589;
 const epsilon = 0.000000000000001;
 const d2r = pi / 180;
 const r2d = 180 / pi;
@@ -13,7 +13,7 @@ const e = Math.sqrt(zv * zv - b * b) / zv;
 // const As = 0.00673949674227; // 第二偏心率
 
 // 经纬度转地心坐标
-export const Blh2ECEF = (x: number, y: number, z: number) => {
+export const LLAtoECEF = (x: number, y: number, z: number) => {
   let L = x * d2r;
   let B = y * d2r;
   let H = z;
@@ -27,7 +27,7 @@ export const Blh2ECEF = (x: number, y: number, z: number) => {
 }
 
 // 地心坐标转经纬度
-export const ECEF2Blh = (x: number, y: number, z: number) => {
+export const ECEFtoLLA = (x: number, y: number, z: number) => {
   let tmpX = x;
   let temY = y;
   let temZ = z;
