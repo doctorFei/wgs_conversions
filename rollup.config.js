@@ -13,11 +13,13 @@ export default {
   ],
   output: [
     {
+      name:'gisCoordTransform',
       format: "cjs",
       file: pkg.main,
       sourcemap: true
     },
     {
+      name:'gisCoordTransform',
       format: "es",
       file: pkg.module,
       sourcemap: true

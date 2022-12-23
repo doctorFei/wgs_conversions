@@ -1,21 +1,29 @@
-# rollup-starter-ts
+# wgs_conversions #
+A Utils of the World Geodetic System (WGS) conversion functions for converting to/from LLA, ENU, and ECEF.
 
-To fast start a typescript library.  
+## Available Services ##
+### ECEFtoLLA ###
+Converts from ECEF coordinates (in meters) to Latitude, Longitude, Altitude (in degrees).
 
-## Getting started
+### LLAtoECEF ###
+Converts from Latitude, Longitude, Altitude (in degrees) to ECEF coordinates (in meters).
 
-Clone this repository and install its dependencies:
+### LLAtoENU ###
+Converts from Latitude, Longitude, Altitude (in degrees) to a local level frame of the East, North, Up convention (in meters).
 
-```bash
-git clone https://github.com/zenoslin/rollup-starter-ts.git
-cd rollup-starter-ts
-npm install
-```
+Note: This requires a reference LLA position to serve as the origin of the local ENU frame. 
 
-## scripts
-- `npm run build` builds the library to `lib`.
-- `npm run build:type` builds `.d.ts` file for the library.
-- `npm run test` use `jest` to test the source files.
+### ENUtoLLA ###
+Converts from a local East, North, Up frame (in meters) to Latitude, Longitude, Altitude (in degrees).
 
-## License
-[MIT](LICENSE)
+Note: This requires a reference LLA position to serve as the origin of the local ENU frame. 
+
+### ECEFtoENU ###
+Converts from ECEF coordinates (in meters) to East, North, Up (in meters).
+
+Note: This requires a reference LLA position to serve as the origin of the local ENU frame. 
+
+### ENUtoECEF ###
+Converts from East, North, Up (in meters) to ECEF (in meters).
+
+Note: This requires a reference LLA position to serve as the origin of the local ENU frame. 

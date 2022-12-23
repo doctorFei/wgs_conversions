@@ -1,14 +1,14 @@
 {
-  "name": "gis-coord-transform",
+  "name": "wgs_conversions",
   "version": "0.0.1",
-  "description": "To fast start a typescript library.",
-  "main": "lib/bundle.cjs.js",
-  "module": "lib/bundle.esm.js",
+  "description": "A Utils of the World Geodetic System (WGS) conversion functions for converting to/from LLA, ENU, and ECEF.",
+  "main": "lib/wgsConversions.cjs.js",
+  "module": "lib/wgsConversions.esm.js",
   "scripts": {
     "build": "rollup -c",
     "build:type": "tsc -p ./tsconfig.type.json"
   },
-  "author": "zenoslin",
+  "author": "websterwang",
   "license": "ISC",
   "devDependencies": {
     "@types/jest": "^24.0.19",
@@ -21,8 +21,7 @@
     "typescript": "^3.6.4"
   },
   "directories": {
-    "lib": "lib",
-    "test": "test"
+    "lib": "lib"
   },
   "dependencies": {
     "three": "^0.147.0"

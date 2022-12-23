@@ -5,11 +5,9 @@ import { Vector3 } from 'three/src/math/Vector3';
 const pi = 3.141592653589;
 const d2r = pi / 180;
 
-// 地心地固坐标系 ECEF
-// 站心坐标系 ENU
 
 /**
- * 地心转站心
+ * 地心转站心的变换矩阵
  * @param topocentricOrigin 
  * @returns 
  */
@@ -27,7 +25,7 @@ export const CalEcef2EnuMatrix = (topocentricOrigin: Vector3): Matrix4 => {
 }
 
 /**
- * 站心转地心
+ * 站心转地心的变换矩阵
  * @param topocentricOrigin 站心坐标
  * @returns 从ENU转换到ECEF的图形变换矩阵
  */
@@ -43,8 +41,7 @@ export const CalEnu2EcefMatrix = (topocentricOrigin: Vector3): Matrix4 => {
   return transMatrix.multiply(rotationMatrix)
 }
 
-// 经纬度 =>> 站心
-export const LLAToENU = (LLACoords: Array<number>, topocentricOrigin: Array<number>) => {
+export const LLAtoENU = (LLACoords: Array<number>, topocentricOrigin: Array<number>) => {
   // 地心转站心矩阵
   const ecef2EnuMatrix = CalEcef2EnuMatrix(new Vector3(...topocentricOrigin))
   // 经纬度转地心
@@ -55,13 +52,29 @@ export const LLAToENU = (LLACoords: Array<number>, topocentricOrigin: Array<numb
   return [res.x, res.y, res.z]
 }
 
-// 站心 ==> 经纬度
 export const ENUtoLLA = (ENUCoords: Array<number>, topocentricOrigin: Array<number>) => {
   // 站心转地心矩阵
   const enu2EcefMatrix = CalEnu2EcefMatrix(new Vector3(...topocentricOrigin))
   // 转地心
   const ecef = new Vector3(...ENUCoords).applyMatrix4(enu2EcefMatrix)
-
   // 地心转经纬度
   return ECEFtoLLA(ecef.x, ecef.y, ecef.z)
+}
+
+
+export const ECEFtoENU = (XYZCoords: Array<number>, topocentricOrigin: Array<number>) => {
+  // 地心转站心矩阵
+  const ecef2EnuMatrix = CalEcef2EnuMatrix(new Vector3(...topocentricOrigin))
+  // 矩阵转换wolrd2localMatrix * xyz;
+  const res = new Vector3(...XYZCoords).applyMatrix4(ecef2EnuMatrix)
+
+  return [res.x, res.y, res.z]
+}
+
+
+export const ENUtoECEF = (ENUCoords: Array<number>, topocentricOrigin: Array<number>) => {
+  // 站心转地心矩阵
+  const enu2EcefMatrix = CalEnu2EcefMatrix(new Vector3(...topocentricOrigin))
+  const ecef = new Vector3(...ENUCoords).applyMatrix4(enu2EcefMatrix)
+  return [ecef.x, ecef.y, ecef.z]
 }
